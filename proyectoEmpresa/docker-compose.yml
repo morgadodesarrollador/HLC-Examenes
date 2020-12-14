@@ -1,0 +1,9 @@
+version: '3.8'
+...
+networks: 
+  netasir:
+      ipam: 
+          driver: default
+          config: 
+              - subnet: 172.124.10.0/24
+
