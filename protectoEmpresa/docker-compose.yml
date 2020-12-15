@@ -1,0 +1,32 @@
+version: '3.8'
+services: 
+  Sweb:
+    container_name: nicoSweb
+    build:
+      context: ./nicoSweb
+      dockerfile: ./Dockerfile
+    environment: 
+      -USUARIO=nico
+      -PASSWD=1234
+      -HOSTNAME=nicoSweb.asir.es
+      networks: 
+        netasir:
+          ipv4_address: 179.120.10.2
+  SDB:
+    container_name: nicoSDB
+    build: 
+      context: ./nicoSDB
+      dockerfile: ./Dockerfile
+      environment: 
+      -USUARIO=nico
+      -PASSWD=usuario
+      -HOSTNAME=nicoSDB.asir.es
+      networks: 
+        netasir:
+          ipv4_address: 179.120.10.3
+networks: 
+    netasir:
+        ipam: 
+            driver: default
+            config: 
+                - subnet: 179.120.10.0/24   
