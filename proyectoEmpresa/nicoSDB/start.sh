@@ -1,10 +1,10 @@
 #!/bin/bash
 useradd -rm -d /home/"$USUARIO" -s /bin/bash "$USUARIO"
-echo "$USUARIO:$PASSWD"
+echo "$USUARIO:$PASSWD" | chpasswd
 
-cat/home/id_rsa.pub >> /home/$USUARIO/.ssh/authorized_keys
+cat/root/id_rsa.pub >> /home/$USUARIO/.ssh/authorized_keys
 
-cat /home/addhosts >> /etc/hosts
+cat /root/addhosts >> /etc/hosts
 
 echo "$USUARIO ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
