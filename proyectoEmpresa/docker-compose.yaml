@@ -1,0 +1,32 @@
+version: '3.8'
+services: 
+  sweb:
+    container_name: serweb
+    build: 
+      context: ./joaquinSweb
+      dockerfile: ./Dockerfile
+    environment: 
+      - USUARIO=joaquin
+      - PASSWD=1234
+      - HOSTNAME=joaquinSweb.asir.es
+    networks: 
+      netasir:
+        ipv4_address: 178.120.10.5
+  sbd:
+    container_name: servbd
+    build: 
+      context: ./joaquinSBD
+      dockerfile: ./Dockerfile
+    environment: 
+      - USUARIO=joaquin
+      - PASSWD=1234
+      - HOSTNAME=joaquinSBD.asir.es
+    networks: 
+      netasir:
+        ipv4_address:  178.120.10.6
+networks: 
+    netasir:
+        ipam: 
+            driver: default
+            config: 
+                - subnet: 178.120.10.0/24
