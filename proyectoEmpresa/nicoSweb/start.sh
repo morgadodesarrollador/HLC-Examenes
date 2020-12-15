@@ -6,8 +6,8 @@ cat /home/id_rsa.pub >> /home/$USUARIO/.ssh/authorized_keys
 
 cat /root/addhosts >> /etc/hosts
 
-echo $usuario ALL=(ALL) NOPASSWD: ALL >> /etc/sudoers
+echo "$USUARIO ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-/etc/init.d/ssh Start
+/etc/init.d/ssh start
 
 tail -f /dev/null
