@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  sweb:
+    container_name: servWeb
+    build:
+      context: ./domenicaSweb
+      dockerfile: ./Dockerfile
+    environment:
+      - USUARIO=domenica
+      - PASSWD=1234
+      - HOSTNAME=domenicaSweb
+    networks:
+      netasir:
+        ipv4_address: 177.120.10.2/24
+
+  sbd:
+    container_name: servBD
+    build:
+      context: ./domenicaSBD
+      dockerfile: ./Dockerfile
+    environment:
+      - USUARIO=domenica
+      - PASSWD=1234
+      - HOSTNAME=domenicaSBD
+    networks:
+      netasir:
+        ipv4_address: 177.120.10.3/24
+networks:
+ netasir:
+    ipam:
+        driver: default
+        config:
+          - subnet: 177.120.10.0/24
