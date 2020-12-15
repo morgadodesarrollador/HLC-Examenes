@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  Sweb:
+    container_name: servWeb
+    build: .
+      context: ./jlarioSweb
+      dockerfile: ./Dockerfile
+    ports: 
+      - "80:80"
+    environment: 
+      - USUARIO=jlario
+      - PASSWD=1234
+      - HOSTNAME=jlarioSweb.asirmorgado.es
+    volumes: 
+      - ./:/var/www/html
+    networks:
+      netasir:
+        ipv4_address: 181.120.10.2
+   SBD:
+    container_name: servBD
+    build: .
+      context: ./jlarioSBD
+      dockerfile: ./Dockerfile
+    ports: 
+      - "81:81"
+    environment: 
+      - USUARIO=jlario
+      - PASSWD=1234
+      - HOSTNAME=jlarioSBD.asirmorgado.es
+    networks:
+      netasir:
+        ipv4_address: 181.120.10.3
+   networks:
+     netasir:
+       ipam:
+         driver: default
+         config:
+           - subnet: 181.120.10.0/24
