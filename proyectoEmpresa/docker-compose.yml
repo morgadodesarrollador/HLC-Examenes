@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  sweb:
+    container_name: jperezSweb
+    build:
+      context: ./jperezSweb
+      dockerfile: ./Dockerfile
+    environment:
+      - USUARIO=jperez
+      - PASSWD=1234
+      - HOSTNAME=jperezSweb.asir.es
+    networks:
+      netasir:
+        ipv4_address: 172.120.10.2
+  sbd:
+    container_name: jperezSBD
+    build:
+      context: ./jperezSBD
+      dockerfile: ./Dockerfile
+    environment:
+      - USUARIO=jperez
+      - PASSWD=1234
+      - HOSTNAME=jperezSBD.asir.es
+    networks:
+      netasir:
+        ipv4_address: 172.120.10.3
+
+networks:
+  netasir:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.120.10.0/24
