@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  sweb:
+    container_name: servweb
+    build:
+      context: ./dobriSweb
+      dockerfile: ./Dockerfile
+    environment: 
+      - USUARIO=dobri
+      - PASSWD=usuario
+      - HOSTNAME=dobrisweb.asir.es
+    networks:
+      netasir:
+          ipv4_address: 175.120.10.2
+#  SBD:
+#  container_name: serBBDD
+#  build: .
+#    context: ./dobriSBD
+#    dockerfile: ./dockerfile
+#  environment: 
+#    -USUARIO=dobri
+#    -PASSWD=usuario
+#    -HOSTNAME=dobriSBD.asir.es
+#  networks:
+#    netasir:
+#      ipv4_address: 175.120.10.3
+networks:
+  netasir:
+      ipam:
+          driver: default
+          config:
+              - subnet: 175.120.10.0/24
