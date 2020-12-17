@@ -24,3 +24,12 @@ services:
     networks: 
       asir.es:
           ipv4_address: 176.120.10.3
+
+
+#DEBES DE CREAR LA RED asir.es. NO EJECUTABA EL DOCKER-COMPOSE 
+networks: 
+  asir.es:
+      ipam: 
+          driver: default
+          config: 
+              - subnet: 176.120.10.0/24
