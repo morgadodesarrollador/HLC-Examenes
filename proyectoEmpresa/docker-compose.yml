@@ -1,0 +1,32 @@
+version: '3.8'
+services: 
+  Sweb:
+    container_name: carlosSweb 
+    build: 
+      context: ./carlosSweb
+      dockerfile: ./carlosSweb/dockerfile
+    environment: 
+      - USUARIO=carlos
+      - PSSWD=1234
+      - HOSTNAME=carlosSweb.asir.es
+    networks:
+      netasir:
+          ipv4_address: 174.120.10.2
+  Sweb:
+    container_name: carlosSBD 
+    build: 
+      context: ./carlosSBD
+      dockerfile: ./carlosSBD/dockerfile
+    environment: 
+      - USUARIO=carlos
+      - PSSWD=1234
+      - HOSTNAME=carlosSweb.asir.es
+    networks:
+      netasir:
+          ipv4_address: 174.120.10.3
+networks: 
+  netasir:
+      ipam: 
+          driver: default
+          config: 
+              - subnet: 174.120.10.0/24
