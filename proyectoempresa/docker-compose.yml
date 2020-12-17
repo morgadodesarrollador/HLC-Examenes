@@ -5,12 +5,14 @@ services:
     build: .
       context: ./jlarioSweb
       dockerfile: ./Dockerfile
+    #no se pide la redirección de puertos al no instalar un apache
     ports: 
       - "80:80"
     environment: 
       - USUARIO=jlario
       - PASSWD=1234
       - HOSTNAME=jlarioSweb.asirmorgado.es
+    #no es preciso crear el volumen
     volumes: 
       - ./:/var/www/html
     networks:
@@ -21,6 +23,7 @@ services:
     build: .
       context: ./jlarioSBD
       dockerfile: ./Dockerfile
+    #no tiene setido habilitar el puerto 81
     ports: 
       - "81:81"
     environment: 

@@ -9,6 +9,7 @@ COPY ./addhosts /root
 RUN chmod +x /root/start.sh
  
 EXPOSE 80
+#no hay que instalar composer
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
