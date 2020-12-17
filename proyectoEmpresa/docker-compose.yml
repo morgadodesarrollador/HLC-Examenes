@@ -4,10 +4,10 @@ services:
     container_name: carlosSweb 
     build: 
       context: ./carlosSweb
-      dockerfile: ./carlosSweb/dockerfile
+      dockerfile: ./carlosSweb/dockerfile #./Dockerfile --> el directorio y lo indicas en 'context'
     environment: 
       - USUARIO=carlos
-      - PSSWD=1234
+      - PSSWD=1234 #No coincide con la variable ${PASSWD} es start.sh
       - HOSTNAME=carlosSweb.asir.es
     networks:
       netasir:
@@ -16,7 +16,7 @@ services:
     container_name: carlosSBD 
     build: 
       context: ./carlosSBD
-      dockerfile: ./carlosSBD/dockerfile
+      dockerfile: ./carlosSBD/dockerfile #./Dockerfile --> el directorio y lo indicas en 'context'
     environment: 
       - USUARIO=carlos
       - PSSWD=1234
