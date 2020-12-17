@@ -4,6 +4,7 @@ services:
 		container_name: servWeb
 		build:
 		context: ./manuSweb
+		#no pones el Dockerfile
 		dockerfile: ./dockerfile
 		environment:
 		- USUARIO=manu
