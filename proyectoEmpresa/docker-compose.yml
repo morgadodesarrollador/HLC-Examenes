@@ -1,35 +1,32 @@
 version: '3.8'
-services:
-  Sweb:
-    container_name: servWeb
-    build: 
-      context: ./morgadoSweb
+services: 
+  sweb:
+    container_name: servweb
+    build:
+      context: ./nicoSweb
       dockerfile: ./Dockerfile
     environment: 
-      - USUARIO=morgado
-      - PASSWD=usuario
-      - HOSTNAME=morgadoSweb.asir.es
-    ports: 
-      - "80:80"
+    - USUARIO=nico
+    - PASSWD=1234
+    - HOSTNAME=nicoSweb.asir.es
     networks: 
       netasir:
-          ipv4_address: 172.124.10.2 
-  SBD:
-    container_name: servBD
+        ipv4_address: 179.120.10.2
+  sdb:
+    container_name: servSDB
     build: 
-      context: ./morgadoSBD
+      context: ./nicoSDB
       dockerfile: ./Dockerfile
     environment: 
-      - USUARIO=morgado
-      - PASSWD=usuario
-      - HOSTNAME=morgadoSBD.asir.es
+    - USUARIO=nico
+    - PASSWD=usuario
+    - HOSTNAME=nicoSDB.asir.es
     networks: 
-      netasir:
-          ipv4_address: 172.124.10.3 
+        netasir:
+          ipv4_address: 179.120.10.3
 networks: 
-  netasir:
-      ipam: 
-          driver: default
-          config: 
-              - subnet: 172.124.10.0/24
-
+    netasir:
+        ipam: 
+            driver: default
+            config: 
+                - subnet: 179.120.10.0/24   
