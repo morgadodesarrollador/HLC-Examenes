@@ -1,35 +1,32 @@
 version: '3.8'
-services:
-  Sweb:
-    container_name: servWeb
+services: 
+  Sweb: #lo pones el mayúscula
+    container_name: carlosSweb 
     build: 
-      context: ./morgadoSweb
-      dockerfile: ./Dockerfile
+      context: ./carlosSweb
+      dockerfile: ./carlosSweb/dockerfile #./Dockerfile --> el directorio y lo indicas en 'context'
     environment: 
-      - USUARIO=morgado
-      - PASSWD=usuario
-      - HOSTNAME=morgadoSweb.asir.es
-    ports: 
-      - "80:80"
-    networks: 
+      - USUARIO=carlos
+      - PSSWD=1234 #No coincide con la variable ${PASSWD} es start.sh
+      - HOSTNAME=carlosSweb.asir.es
+    networks:
       netasir:
-          ipv4_address: 172.124.10.2 
-  SBD:
-    container_name: servBD
+          ipv4_address: 174.120.10.2
+  Sweb: #repites el mismo servicio
+    container_name: carlosSBD 
     build: 
-      context: ./morgadoSBD
-      dockerfile: ./Dockerfile
+      context: ./carlosSBD
+      dockerfile: ./carlosSBD/dockerfile #./Dockerfile --> el directorio y lo indicas en 'context'
     environment: 
-      - USUARIO=morgado
-      - PASSWD=usuario
-      - HOSTNAME=morgadoSBD.asir.es
-    networks: 
+      - USUARIO=carlos
+      - PSSWD=1234
+      - HOSTNAME=carlosSweb.asir.es
+    networks:
       netasir:
-          ipv4_address: 172.124.10.3 
+          ipv4_address: 174.120.10.3
 networks: 
   netasir:
       ipam: 
           driver: default
           config: 
-              - subnet: 172.124.10.0/24
-
+              - subnet: 174.120.10.0/24
