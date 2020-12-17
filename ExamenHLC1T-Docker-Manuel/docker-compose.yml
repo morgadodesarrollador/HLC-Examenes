@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+	sweb:
+		container_name: servWeb
+		build:
+		context: ./manuSweb
+		dockerfile: ./dockerfile
+		environment:
+		- USUARIO=manu
+		- PASSWD=1234
+		- HOSTNAME=manuSweb.asir.es
+		networks:
+		netasir:
+		ipv4_address: 180.120.10.2
+	SBD:
+		container_name: servBD
+		build:
+		context: ./manuSBD
+		dockerfile: ./dockerfile
+		environment:
+		- USUARIO=manu
+		- PASSWD=1234
+		- HOSTNAME=manuSBD.asir.es
+		networks: 
+		netasir:
+		ipam: 
+		driver: default
+		config: 
+		- subnet: 180.120.10.0/24
+
