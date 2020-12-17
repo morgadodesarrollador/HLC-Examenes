@@ -1,35 +1,33 @@
 version: '3.8'
 services:
-  Sweb:
+  sweb:
     container_name: servWeb
-    build: 
-      context: ./morgadoSweb
+    build:
+      context: ./domenicaSweb
       dockerfile: ./Dockerfile
-    environment: 
-      - USUARIO=morgado
-      - PASSWD=usuario
-      - HOSTNAME=morgadoSweb.asir.es
-    ports: 
-      - "80:80"
-    networks: 
+    environment:
+      - USUARIO=domenica
+      - PASSWD=1234
+      - HOSTNAME=domenicaSweb
+    networks:
       netasir:
-          ipv4_address: 172.124.10.2 
-  SBD:
-    container_name: servBD
-    build: 
-      context: ./morgadoSBD
-      dockerfile: ./Dockerfile
-    environment: 
-      - USUARIO=morgado
-      - PASSWD=usuario
-      - HOSTNAME=morgadoSBD.asir.es
-    networks: 
-      netasir:
-          ipv4_address: 172.124.10.3 
-networks: 
-  netasir:
-      ipam: 
-          driver: default
-          config: 
-              - subnet: 172.124.10.0/24
+        ipv4_address: 177.120.10.2/24
 
+  sbd:
+    container_name: servBD
+    build:
+      context: ./domenicaSBD
+      dockerfile: ./Dockerfile
+    environment:
+      - USUARIO=domenica
+      - PASSWD=1234
+      - HOSTNAME=domenicaSBD
+    networks:
+      netasir:
+        ipv4_address: 177.120.10.3/24
+networks:
+ netasir:
+    ipam:
+        driver: default
+        config:
+          - subnet: 177.120.10.0/24
